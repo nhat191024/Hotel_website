@@ -1,0 +1,55 @@
+{
+    "category": [
+        {
+            "name": "Single room"
+        },
+        {
+            "name": "Double room"
+        },
+        {
+            "name": "Triple room"
+        },
+        {
+            "name": "Queen room"
+        },
+        {
+            "name": "King room"
+        },
+        {
+            "name": "Suite"
+        },
+        {
+            "name": "Deluxe"
+        }
+    ],
+    "service": [
+        {
+            "name": "Wifi",
+            "price": 0
+        },
+        {
+            "name": "Ironing facilities",
+            "price": 0
+        },
+        {
+            "name": "Luggage",
+            "price": 0
+        },
+        {
+            "name": "Beauty kit",
+            "price": 0
+        },
+        {
+            "name": "Welcome drink",
+            "price": 0
+        },
+        {
+            "name": "Baby kit",
+            "price": 0
+        },
+        {
+            "name": "Concierge",
+            "price": 0
+        }
+    ]
+}
