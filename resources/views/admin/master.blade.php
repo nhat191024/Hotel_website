@@ -135,10 +135,10 @@
                     <span>Category</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link">
-                    <i class="fas fa-fw fa-warehouse"></i>
-                    <span>Category</span></a>
+            <li class="nav-item @if (Request::url() == route('admin.banner.index')) {{ 'active' }} @endif">
+                <a class="nav-link" href="{{ route('admin.banner.index') }}">
+                    <i class="fas fa-fw fa-clipboard"></i>
+                    <span>Banner</span></a>
             </li>
 
             <!-- Divider -->
