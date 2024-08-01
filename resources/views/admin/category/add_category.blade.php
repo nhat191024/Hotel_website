@@ -7,7 +7,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Thêm tài khoản</h1>
+        <h1 class="h3 mb-2 text-gray-800">Add Category</h1>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -19,7 +19,7 @@
                             <input required type="text" class="form-control" id="" aria-describedby=""
                                 name="categoryName">
                         </div>
-                        <button class="btn btn-success mt-4" type="submit">Thêm</button>
+                        <button class="btn btn-success mt-4" type="submit">Add</button>
                     </form>
                 </div>
             </div>
