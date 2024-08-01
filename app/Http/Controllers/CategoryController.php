@@ -29,7 +29,7 @@ class CategoryController extends Controller
             'categoryName' => 'required',
         ]);
         $this->categoryService->add($request->categoryName);
-        return redirect(route('admin.category.index'))->with('success', 'Thêm danh mục thành công');
+        return redirect(route('admin.category.index'))->with('success', 'Successfully create category');
     }
 
     public function showEditCategory(Request $request) {
@@ -44,15 +44,15 @@ class CategoryController extends Controller
             'categoryName' => 'required',
         ]);
         $this->categoryService->edit($request->id, $request->categoryName);
-        return redirect(route('admin.category.index'))->with('success', 'Sửa danh mục thành công');
+        return redirect(route('admin.category.index'))->with('success', 'Successfully edit category');
     }
 
     public function deleteCategory(Request $request) {
         $id = $request->id;
         if(!$this->categoryService->checkHasChildren($id)) {
             $this->categoryService->delete($id);
-            return redirect(route('admin.category.index'))->with('success', 'Xóa danh mục thành công') ;
+            return redirect(route('admin.category.index'))->with('success', 'Successfully delete category') ;
         }
-        return redirect(route('admin.category.index'))->with('error', 'Danh mục đang có sản phẩm không thể xóa');
+        return redirect(route('admin.category.index'))->with('error', 'Cannot delete category because category has rooms');
     }
 }
