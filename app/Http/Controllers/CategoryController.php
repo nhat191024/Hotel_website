@@ -5,61 +5,54 @@ namespace App\Http\Controllers;
 use App\Models\category;
 use Illuminate\Http\Request;
 
+use App\Service\CategoryService;
+
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    private $categoryService;
+
+    public function __construct(CategoryService $categoryService) {
+        $this->categoryService = $categoryService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function index() {
+        $allCategory = $this->categoryService->getAll();
+        return view('admin.category.index', compact('allCategory'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function showAddCategory() {
+        return view('admin.category.add_category');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(category $category)
-    {
-        //
+    public function addCategory(Request $request) {
+        $request->validate([
+            'categoryName' => 'required',
+        ]);
+        $this->categoryService->add($request->categoryName);
+        return redirect(route('admin.category.index'))->with('success', 'Thêm danh mục thành công');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(category $category)
-    {
-        //
+    public function showEditCategory(Request $request) {
+        $category = $this->categoryService->getById($request->id);
+        $id = $request->id;
+        return view('admin.category.edit_category', compact('id', 'category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, category $category)
-    {
-        //
+    public function editCategory(Request $request) {
+        $request->validate([
+            'id' => 'required',
+            'categoryName' => 'required',
+        ]);
+        $this->categoryService->edit($request->id, $request->categoryName);
+        return redirect(route('admin.category.index'))->with('success', 'Sửa danh mục thành công');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(category $category)
-    {
-        //
+    public function deleteCategory(Request $request) {
+        $id = $request->id;
+        if(!$this->categoryService->checkHasChildren($id)) {
+            $this->categoryService->delete($id);
+            return redirect(route('admin.category.index'))->with('success', 'Xóa danh mục thành công') ;
+        }
+        return redirect(route('admin.category.index'))->with('error', 'Danh mục đang có sản phẩm không thể xóa');
     }
 }
