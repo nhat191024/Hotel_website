@@ -18,6 +18,7 @@ class BannerFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
+            'sub_title' => $this->faker->sentence,
             'image' => $this->faker->imageUrl(),
             'link' => $this->faker->url,
             'status' => $this->faker->numberBetween(0, 1),
