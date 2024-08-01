@@ -53,7 +53,7 @@
             <li class="nav-item @if (Request::url() == route('admin.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.index') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Category</span></a>
+                    <span>Dashboard</span></a>
             </li>
 
 
@@ -129,16 +129,16 @@
             </li> --}}
 
             <!-- Nav Item - Tables -->
-            {{-- <li class="nav-item @if (Request::url() == route('admin.branch.index')) {{ 'active' }} @endif">
-                <a class="nav-link" href="{{ route('admin.branch.index') }}">
+            <li class="nav-item @if (Request::url() == route('admin.category.index')) {{ 'active' }} @endif">
+                <a class="nav-link" href="{{ route('admin.category.index') }}">
                     <i class="fas fa-fw fa-warehouse"></i>
-                    <span>Chi nhánh</span></a>
-            </li> --}}
+                    <span>Category</span></a>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link">
                     <i class="fas fa-fw fa-warehouse"></i>
-                    <span>Chi nhánh</span></a>
+                    <span>Category</span></a>
             </li>
 
             <!-- Divider -->
