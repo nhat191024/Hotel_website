@@ -16,9 +16,11 @@ class CategoryService
 
     public function add($categoryName)
     {
-        category::create([
+        $cate = category::create([
             'name' => $categoryName,
         ]);
+
+        return $cate;
     }
 
     public function edit($id, $categoryName)
@@ -26,6 +28,8 @@ class CategoryService
         $category = category::where('id', $id)->first();
         $category->name = $categoryName;
         $category->save();
+
+        return $category;
     }
 
     public function checkHasChildren($idCategory) {
@@ -33,6 +37,7 @@ class CategoryService
     }
 
     public function delete($id) {
-        category::destroy($id);
+        $cate = category::destroy($id);
+        return $cate;
     }
 }
