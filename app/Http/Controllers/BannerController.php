@@ -5,61 +5,70 @@ namespace App\Http\Controllers;
 use App\Models\banner;
 use Illuminate\Http\Request;
 
+use App\Service\BannerService;
+
 class BannerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private $BannerService;
+
+    public function __construct(BannerService $BannerService)
+    {
+        $this->BannerService = $BannerService;
+    }
+
     public function index()
     {
-        //
+        $allBanner = $this->BannerService->getAll();
+        return view('admin.banner.index', compact('allBanner'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function showAddBanner()
     {
-        //
+        return view('admin.banner.add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function addBanner(Request $request)
     {
-        //
+
+        // dd($request);
+
+        $request->validate([
+            'title' => 'required',
+            'sub_title' => 'required',
+            'image' => 'required',
+            'link' => 'required',
+        ]);
+
+        $this->BannerService->add($request->title, $request->sub_title, $request->image, $request->link);
+
+        return redirect()->route('admin.banner.index')->with('success', 'Successfully create banner');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(banner $banner)
+    public function showEditBanner($id)
     {
-        //
+        $banner = $this->BannerService->getById($id);
+        return view('admin.banner.edit', compact('banner'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(banner $banner)
+    public function editBanner(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required',
+            'title' => 'required',
+            'sub_title' => 'required',
+            'image' => 'required',
+            'link' => 'required',
+            'status' => 'required',
+        ]);
+
+        $this->BannerService->edit($request->id, $request->title, $request->sub_title, $request->image, $request->link, $request->status);
+
+        return redirect()->route('admin.banner.index')->with('success', 'Successfully edit banner');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, banner $banner)
+    public function deleteBanner($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(banner $banner)
-    {
-        //
+        $this->BannerService->delete($id);
+        return redirect()->route('admin.banner.index')->with('success', 'Successfully delete banner');
     }
 }
