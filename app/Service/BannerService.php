@@ -36,9 +36,20 @@ class BannerService
         $banner = banner::where('id', $id)->first();
         $banner->title = $title;
         $banner->sub_title = $sub_title;
-        $banner->image = $image;
         $banner->link = $link;
         $banner->status = $status;
+
+        if ($image) {
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('img/banner'), $imageName);
+            $image = '/img/banner/' . $imageName;
+
+            $oldImage = $banner->image;
+            unlink(public_path($oldImage));
+
+            $banner->image = $image;
+        }
+
         $banner->save();
     }
 
