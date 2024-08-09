@@ -67,12 +67,12 @@
                                         <td class="text-center">
                                             @if ($item->status == 1)
                                                 <a class="btn btn-danger mb-2"
-                                                    href="{{ route('admin.banner.change_status', ['id' => $item->id, 'status' => 0]) }}">
+                                                    href="{{ route('admin.promotion.change_status', ['id' => $item->id, 'status' => 0]) }}">
                                                     Deactive
                                                 </a>
                                             @else
                                                 <a class="btn btn-success mb-2"
-                                                    href="{{ route('admin.banner.change_status', ['id' => $item->id, 'status' => 1]) }}">
+                                                    href="{{ route('admin.promotion.change_status', ['id' => $item->id, 'status' => 1]) }}">
                                                     Active
                                                 </a>
                                             @endif
@@ -80,8 +80,8 @@
                                                 href="{{ route('admin.promotion.show_edit', ['id' => $item->id]) }}">
                                                 Edit
                                             </a>
-                                            <a class="btn btn-danger"
-                                                href="{{ route('admin.banner.delete', ['id' => $item->id]) }}"
+                                            <a class="btn btn-danger mb-2"
+                                                href="{{ route('admin.promotion.delete', ['id' => $item->id]) }}"
                                                 onclick="confirm('Bạn chắc chắn chứ?')"> Delete
                                             </a>
                                         </td>
