@@ -19,4 +19,9 @@ class room extends Model
     {
         return $this->hasMany(bill::class);
     }
+
+    public function services()
+    {
+        return $this->belongsToMany(service::class, 'room_services', 'room_id', 'service_id');
+    }
 }
