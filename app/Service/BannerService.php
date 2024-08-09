@@ -4,22 +4,29 @@ namespace App\Service;
 
 use App\Models\banner;
 
-class BannerService {
+class BannerService
+{
 
-    public function getAll() {
+    public function getAll()
+    {
         return banner::all();
     }
 
-    public function getById($id) {
+    public function getById($id)
+    {
         return banner::where('id', $id)->first();
     }
 
     public function add($title, $sub_title, $image, $link)
     {
+
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('img/banner'), $imageName);
+
         banner::create([
             'title' => $title,
             'sub_title' => $sub_title,
-            'image' => $image,
+            'image' => '/img/banner/' . $imageName,
             'link' => $link,
         ]);
     }
@@ -35,7 +42,15 @@ class BannerService {
         $banner->save();
     }
 
-    public function delete($id) {
+    public function changeStatus($id, $status)
+    {
+        $banner = banner::where('id', $id)->first();
+        $banner->status = $status;
+        $banner->save();
+    }
+
+    public function delete($id)
+    {
         banner::destroy($id);
     }
 }
