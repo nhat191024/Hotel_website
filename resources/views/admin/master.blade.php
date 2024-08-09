@@ -141,6 +141,12 @@
                     <span>Banner</span></a>
             </li>
 
+            <li class="nav-item {{ Request::is('admin/promotion*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.promotion.index') }}">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Promotion</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -366,7 +372,10 @@
 
                 </nav>
                 <!-- End of Topbar -->
+
                 @yield('main')
+
+
                 <!-- End of Page Wrapper -->
                 <!-- Footer -->
                 <footer class="sticky-footer bg-white">
