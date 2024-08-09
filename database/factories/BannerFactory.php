@@ -19,7 +19,7 @@ class BannerFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'sub_title' => $this->faker->sentence,
-            'image' => $this->faker->imageUrl(),
+            'image' => '/img/banner/demo.png',
             'link' => $this->faker->url,
             'status' => $this->faker->numberBetween(0, 1),
         ];

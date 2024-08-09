@@ -8,6 +8,7 @@ use App\Models\category;
 use App\Models\promotion;
 use App\Models\room;
 use App\Models\User;
+use App\Models\service;
 // use Database\Factories\BannerFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -32,7 +33,16 @@ class DatabaseSeeder extends Seeder
             category::create($data);
         }
 
+        foreach ($dataArray['service'] as $data) {
+            service::create($data);
+        }
+
         room::factory()->count(10)->create();
         bill::factory()->count(10)->create();
+
+        for ($i = 0; $i < 20; $i++) {
+            $room = room::find(random_int(1, 10));
+            $room->services()->attach(random_int(1, 7));
+        }
     }
 }
