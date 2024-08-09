@@ -44,4 +44,30 @@ class PromotionController extends Controller
         $promotion = $this->promotionService->getById($id);
         return view('admin.promotion.edit', compact('promotion'));
     }
+
+    public function editPromotion(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'link' => 'required',
+            'status' => 'required',
+            'id' => 'required'
+        ]);
+
+        $this->promotionService->edit($request->id, $request->title, $request->image, $request->link, $request->status);
+
+        return redirect()->route('admin.promotion.index')->with('success', 'Successfully edit promotion');
+    }
+
+    public function changeStatus($id, $status)
+    {
+        $this->promotionService->changeStatus($id, $status);
+        return redirect()->route('admin.promotion.index')->with('success', 'Successfully change status');
+    }
+
+    public function deletePromotion($id)
+    {
+        $this->promotionService->delete($id);
+        return redirect()->route('admin.promotion.index')->with('success', 'Successfully delete promotion');
+    }
 }
