@@ -31,9 +31,19 @@ class promotionService {
         {
             $promotion = promotion::where('id', $id)->first();
             $promotion->title = $title;
-            $promotion->image = $image;
             $promotion->link = $link;
             $promotion->status = $status;
+
+            if ($image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('img/promotion'), $imageName);
+                $image = '/img/promotion/' . $imageName;
+
+                $oldImage = $promotion->image;
+                unlink(public_path($oldImage));
+
+                $promotion->image = $image;
+            }
             $promotion->save();
         }
 
