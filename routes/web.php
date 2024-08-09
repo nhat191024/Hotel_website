@@ -36,9 +36,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [PromotionController::class, 'index'])->name('admin.promotion.index');
         Route::get('/add', [PromotionController::class, 'showAddPromotion'])->name('admin.promotion.show_add');
         Route::post('/add', [PromotionController::class, 'addPromotion'])->name('admin.promotion.add');
-        // Route::post('/edit', [PromotionController::class, 'editPromotion'])->name('admin.promotion.edit');
+        Route::post('/edit', [PromotionController::class, 'editPromotion'])->name('admin.promotion.edit');
         Route::get('/edit/{id}', [PromotionController::class, 'showEditPromotion'])->name('admin.promotion.show_edit');
-        // Route::get('/change-status/{id}/{status}', [PromotionController::class, 'changeStatus'])->name('admin.promotion.change_status');
-        // Route::get('/delete/{id}', [PromotionController::class, 'deletePromotion'])->name('admin.promotion.delete');
+        Route::get('/change-status/{id}/{status}', [PromotionController::class, 'changeStatus'])->name('admin.promotion.change_status');
+        Route::get('/delete/{id}', [PromotionController::class, 'deletePromotion'])->name('admin.promotion.delete');
     });
 });
