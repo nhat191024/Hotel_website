@@ -66,6 +66,12 @@ class BannerController extends Controller
         return redirect()->route('admin.banner.index')->with('success', 'Successfully edit banner');
     }
 
+    public function changeStatus($id, $status)
+    {
+        $this->BannerService->changeStatus($id, $status);
+        return redirect()->route('admin.banner.index')->with('success', 'Successfully change status banner');
+    }
+
     public function deleteBanner($id)
     {
         $this->BannerService->delete($id);
