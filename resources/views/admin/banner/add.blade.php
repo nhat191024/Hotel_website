@@ -12,7 +12,7 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.banner.add') }}" method="post">
+                    <form action="{{ route('admin.banner.add') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="">Title</label>
@@ -24,9 +24,10 @@
                             <input required type="text" class="form-control" id="" aria-describedby=""
                                 name="sub_title">
                         </div>
-                        <div class="form-group">
-                            <label for="">Image Link</label>
-                            <input required type="text" class="form-control" id="" aria-describedby=""
+                        <label for="">Banner Image</label>
+                        <div class="custom-file mb-2">
+                            <label class="custom-file-label" for="customFile">image</label>
+                            <input type="file" class="custom-file-input" id="customFile"
                                 name="image">
                         </div>
                         <div class="form-group">

@@ -56,7 +56,9 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->sub_title }}</td>
-                                        <td>{{ $item->image }}</td>
+                                        <td>
+                                            <img src="{{ asset($item->image) }}" alt="banner" width='150px'>
+                                        </td>
                                         <td>{{ $item->link }}</td>
                                         <td>
                                             @if ($item->status == 1)
@@ -66,6 +68,17 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
+                                            @if ($item->status == 1)
+                                                <a class="btn btn-danger mb-2"
+                                                    href="{{ route('admin.banner.change_status', ['id' => $item->id, 'status' => 0]) }}">
+                                                    Deactive
+                                                </a>
+                                            @else
+                                                <a class="btn btn-success mb-2"
+                                                    href="{{ route('admin.banner.change_status', ['id' => $item->id, 'status' => 1]) }}">
+                                                    Active
+                                                </a>
+                                            @endif
                                             <a class="btn btn-warning mb-2"
                                                 href="{{ route('admin.banner.show_edit', ['id' => $item->id]) }}">
                                                 Edit
