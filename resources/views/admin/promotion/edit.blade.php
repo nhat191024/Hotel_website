@@ -12,7 +12,7 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.banner.edit') }}" method="post">
+                    <form action="{{ route('admin.promotion.edit') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="">Title</label>
